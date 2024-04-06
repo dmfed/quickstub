@@ -1,6 +1,7 @@
 package quickstub
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 )
@@ -32,7 +33,7 @@ func NewMux(conf *Config) (*http.ServeMux, error) {
 		} else if c.File != "" {
 			b, err := os.ReadFile(c.File)
 			if err != nil {
-				return nil, err
+				return nil, fmt.Errorf("error opening file %s provided for endpoint %s: %w", c.File, endpoint, err)
 			}
 			contents = b
 		} else {

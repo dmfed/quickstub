@@ -24,27 +24,30 @@ func main() {
 	flag.Parse()
 
 	if showSample {
-		fmt.Fprint(os.Stdout, sampleConfig)
+		fmt.Println(sampleConfig)
 		return
 	}
 
 	b, err := os.ReadFile(confFile)
 	if err != nil {
-		log.Println(err)
+		log.Println("error reading config file", confFile, err)
 		return
 	}
 
+	log.Println("using config file:", confFile)
+
 	conf := new(quickstub.Config)
 	if err := yaml.Unmarshal(b, conf); err != nil {
-		log.Println(err)
+		log.Println("error parsing config:", err)
 		return
 	}
 
 	srv, err := quickstub.NewServer(conf)
 	if err != nil {
-		log.Println(err)
+		log.Println("error creating new server:", err)
 		return
 	}
-	log.Printf("starting quickstub server on %s\n", conf.ListenAddr)
+	log.Println("starting quickstub server on", conf.ListenAddr)
+
 	log.Println(srv.ListenAndServe())
 }
