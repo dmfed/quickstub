@@ -1,0 +1,33 @@
+version: 1
+listen_addr: ":8080"
+endpoints:
+  # simple response with text
+  "GET /hello":
+    code: 200
+    body: "hello world"
+
+  # responds with 201 code and text body
+  "POST /hello":
+    code: 201
+    body: "created"
+
+  # returns contents of file quickstub
+  "GET /get_copy":
+    code: 200
+    headers: 
+      "Content-Type": "application/octet-stream"
+      "Content-Disposition": "attachment; filename=quickstub_copy"
+    file: "quickstub"
+
+  # redirect to /hello endpoint on the same host
+  "GET /redirect":
+    code: 301
+    headers: 
+      "Connection": "keep-alive"
+      "Location": "/hello"
+
+  # responds with 400 code 
+  "GET /badrequest":
+    code: 400
+    body: "These are not the droids you are looking for!"
+
