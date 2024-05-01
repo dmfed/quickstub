@@ -1,0 +1,15 @@
+Usage: quickstub -conf <your_config.yaml> 
+
+quickstub is a simple HTTP stub server 
+which can be configured with a .yaml file.
+
+Quickstart:
+
+quickstub -sample > myconfig.yaml
+Then edit myconfig.yaml as required and launch the server:
+quickstub -conf myconfig.yaml
+
+For detailed usage info and description of configuration options
+see https://github.com/dmfed/quickstub/blob/main/README.md
+
+Flags:

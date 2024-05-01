@@ -1,33 +1,33 @@
-version: 1
-listen_addr: ":8080"
+version: 2
+listen_addr: ':8080'
+magic_endpoint: '/magic'
 endpoints:
-  # simple response with text
-  "GET /hello":
+  # simple response with text body
+  'GET /hello':
     code: 200
     body: "hello world"
 
   # responds with 201 code and text body
-  "POST /hello":
+  'POST /hello/post':
     code: 201
     body: "created"
 
-  # returns contents of file quickstub
-  "GET /get_copy":
+  # responds with 200 code a header and JSON body
+  'GET /hello/json':
     code: 200
-    headers: 
-      "Content-Type": "application/octet-stream"
-      "Content-Disposition": "attachment; filename=quickstub_copy"
-    file: "quickstub"
+    headers:
+        'Content-Type': 'application/json'
+    body: '{"hello": "world"}'
 
-  # redirect to /hello endpoint on the same host
-  "GET /redirect":
+  # redirects to /hello endpoint on the same host
+  'GET /redirect':
     code: 301
     headers: 
-      "Connection": "keep-alive"
-      "Location": "/hello"
+      'Connection': 'keep-alive'
+      'Location': '/hello'
 
   # responds with 400 code 
-  "GET /badrequest":
+  'GET /badrequest':
     code: 400
-    body: "These are not the droids you are looking for!"
+    body: 'These are not the droids you are looking for!'
 
