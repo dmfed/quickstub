@@ -27,7 +27,7 @@ func main() {
 		certFile   string
 		pkeyFile   string
 	)
-	flag.StringVar(&confFile, "conf", "quickstub.yaml", "yaml file with stubs configuration")
+	flag.StringVar(&confFile, "conf", "", "yaml file with stubs configuration")
 	flag.StringVar(&certFile, "cert", "", "RSA certificate file to use for TLS")
 	flag.StringVar(&pkeyFile, "pkey", "", "RSA private key file to use for TLS")
 	flag.BoolVar(&showSample, "sample", false, "print sample config and exit")
